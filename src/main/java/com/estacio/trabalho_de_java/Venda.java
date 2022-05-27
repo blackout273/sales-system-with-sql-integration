@@ -4,7 +4,7 @@ package com.estacio.trabalho_de_java;
 import java.util.ArrayList;
 public abstract class Venda implements MetodoPagamento{
     private String dataDaVenda;
-    private FormaPagamento formaPagamento;
+    private String formaPagamento;
     private Vendedor vendedor;
     private Cliente cliente;
     ArrayList<ItensVenda> listaItens = new ArrayList<ItensVenda>(); 
@@ -20,7 +20,7 @@ public abstract class Venda implements MetodoPagamento{
     }
     
     @Override
-    public String PagarCartao(){
+    public String pagarCartao(){
         return "Pagou no cartão";
     }
     
