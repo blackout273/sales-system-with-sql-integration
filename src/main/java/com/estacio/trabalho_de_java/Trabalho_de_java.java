@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 public class Trabalho_de_java {
 
     public static void main(String[] args) {
-        Pessoa p1 = new Pessoa(null,"Danillo","danillo_teste@gmail.com",23);
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("exemplo-jpa");
+        Pessoa p1 = new Pessoa(null,"UsuarioDeTeste","00022211166");
+        EntityManagerFactory emf= Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();

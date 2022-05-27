@@ -13,18 +13,17 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    private String email;
-    private int idade;
+    private String cpf;
     
     
     public Pessoa() {
         
     }
-    public Pessoa(Integer id, String nome, String email, int idade) {
+    public Pessoa(Integer id, String nome, String cpf) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
-        this.idade = idade;
+        this.cpf = cpf;
+       
         
     }
 
@@ -38,7 +37,7 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", email=" + email + ", idade=" + idade + '}';
+        return "Pessoa{" + "nome=" + nome + ", cpf=" + cpf +'}';
     }
 
     public String getNome() {
@@ -50,19 +49,13 @@ public class Pessoa implements Serializable {
     }
 
     public String getEmail() {
-        return email;
+        return cpf;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String cpf) {
+        this.cpf = cpf;
     }
 
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
+    
     
 }
