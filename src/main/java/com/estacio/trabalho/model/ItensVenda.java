@@ -1,5 +1,5 @@
 
-package com.estacio.trabalho_de_java;
+package com.estacio.trabalho.model;
 
 public class ItensVenda extends Venda{
     private Item item;
@@ -8,7 +8,7 @@ public class ItensVenda extends Venda{
     public Item getItem() {
         return item;
     }
-
+S
     public void setItem(Item item) {
         this.item = item;
     }

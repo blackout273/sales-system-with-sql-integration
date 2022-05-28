@@ -1,7 +1,16 @@
 
-package com.estacio.trabalho_de_java;
+package com.estacio.trabalho.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Item extends ItensVenda {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     private String nome;
     private String unidade;
     private float valor;

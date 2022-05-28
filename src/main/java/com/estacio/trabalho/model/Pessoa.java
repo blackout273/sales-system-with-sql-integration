@@ -1,10 +1,12 @@
 
-package com.estacio.trabalho_de_java;
+package com.estacio.trabalho.model;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
+
 @Entity
 public class Pessoa implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -23,8 +25,6 @@ public class Pessoa implements Serializable {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
-       
-        
     }
 
     public Integer getId() {

@@ -1,5 +1,5 @@
 
-package com.estacio.trabalho_de_java;
+package com.estacio.trabalho.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +17,9 @@ public class Cliente extends Pessoa {
         this.cpf=cpf;
         this.endereco = endereco;
     }
-    
+    public Cliente(){
+        
+    }
     private String endereco;
 
     public String getEndereco() {

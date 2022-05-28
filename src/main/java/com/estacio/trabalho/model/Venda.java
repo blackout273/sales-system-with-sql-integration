@@ -1,13 +1,21 @@
 
-package com.estacio.trabalho_de_java;
+package com.estacio.trabalho.model;
 
+import com.estacio.trabalho.interfaces.MetodoPagamento;
 import java.util.ArrayList;
+
 public class Venda implements MetodoPagamento{
+
+    public Integer id;
     private String dataDaVenda;
     private String formaPagamento;
     private Vendedor vendedor;
     private Cliente cliente;
     ArrayList<ItensVenda> listaItens = new ArrayList<>(); 
+
+    public Venda(String forma_pagamento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     @Override
     public String pagarDinheiro(){
@@ -55,15 +63,15 @@ public class Venda implements MetodoPagamento{
         this.dataDaVenda = dataDaVenda;
     }
     public float getValorTotal(){
-       
+       return 1;
     }
     public String getEnderecoEntrega(){
-        return cliente.getEndereco();
+        System.out.println(cliente.getEndereco());
     }
     public String getQtdItens(){
-        
+        return "teste";
     }
     public void pagar(){
-        
+        return ;
     }
 }

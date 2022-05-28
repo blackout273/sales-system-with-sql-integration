@@ -1,4 +1,4 @@
-package com.estacio.trabalho_de_java;
+package com.estacio.trabalho.interfaces;
 
 public interface MetodoPagamento {
 
