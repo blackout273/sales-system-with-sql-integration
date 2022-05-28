@@ -1,8 +1,22 @@
 
 package com.estacio.trabalho_de_java;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Vendedor extends Pessoa {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public Integer id;
+    public Vendedor(Integer id, String nome, String cpf,float salario) {
+        this.id= id; 
+        this.nome = nome; 
+        this.cpf=cpf;
+        this.salario = salario;
+    }
     private float salario;
 
     public float getSalario() {

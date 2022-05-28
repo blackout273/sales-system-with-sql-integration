@@ -11,9 +11,9 @@ public class Pessoa implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-    private String nome;
-    private String cpf;
+    public Integer id;
+    public String nome;
+    public String cpf;
     
     
     public Pessoa() {
@@ -48,11 +48,11 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public String getEmail() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setEmail(String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

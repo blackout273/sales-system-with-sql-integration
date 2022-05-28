@@ -2,12 +2,12 @@
 package com.estacio.trabalho_de_java;
 
 import java.util.ArrayList;
-public abstract class Venda implements MetodoPagamento{
+public class Venda implements MetodoPagamento{
     private String dataDaVenda;
     private String formaPagamento;
     private Vendedor vendedor;
     private Cliente cliente;
-    ArrayList<ItensVenda> listaItens = new ArrayList<ItensVenda>(); 
+    ArrayList<ItensVenda> listaItens = new ArrayList<>(); 
 
     @Override
     public String pagarDinheiro(){
@@ -24,11 +24,11 @@ public abstract class Venda implements MetodoPagamento{
         return "Pagou no cartão";
     }
     
-    public FormaPagamento getFormaPagamento() {
+    public String getFormaPagamento() {
         return formaPagamento;
     }
 
-    public void setFormaPagamento(FormaPagamento formaPagamento) {
+    public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 
@@ -56,5 +56,14 @@ public abstract class Venda implements MetodoPagamento{
     }
     public float getValorTotal(){
        
+    }
+    public String getEnderecoEntrega(){
+        return cliente.getEndereco();
+    }
+    public String getQtdItens(){
+        
+    }
+    public void pagar(){
+        
     }
 }
