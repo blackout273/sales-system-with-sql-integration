@@ -3,20 +3,40 @@ package com.estacio.trabalho.model;
 
 import com.estacio.trabalho.interfaces.MetodoPagamento;
 import java.util.ArrayList;
+import java.util.Scanner;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Venda implements MetodoPagamento{
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer id;
     private String dataDaVenda;
     private String formaPagamento;
     private Vendedor vendedor;
     private Cliente cliente;
     ArrayList<ItensVenda> listaItens = new ArrayList<>(); 
-
-    public Venda(String forma_pagamento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+     public Venda(Integer id, String dataDaVenda, String formaPagamento, Vendedor vendedor, Cliente cliente) {
+         System.out.println("Opa chegou na classe Venda");
+         this.id = id;
+        this.dataDaVenda = dataDaVenda;
+        this.formaPagamento = formaPagamento;
+        this.vendedor = vendedor;
+        this.cliente = cliente;
     }
-
+    
+    
+    public Venda(){
+        
+    }
+    
+    
+   
     @Override
     public String pagarDinheiro(){
         return "Pagou no Dinheiro";
@@ -33,7 +53,14 @@ public class Venda implements MetodoPagamento{
     }
     
     public String getFormaPagamento() {
-        return formaPagamento;
+        if(this.formaPagamento.equals("cartao")){
+        return this.pagarCartao();
+        }if(this.formaPagamento.equals("pix")){
+        return this.pagarPix();
+        }if(this.formaPagamento.equals("dinheiro")){
+        return this.pagarDinheiro();
+        }
+        return "opção invalida";
     }
 
     public void setFormaPagamento(String formaPagamento) {
@@ -63,13 +90,24 @@ public class Venda implements MetodoPagamento{
         this.dataDaVenda = dataDaVenda;
     }
     public float getValorTotal(){
-       return 1;
+        int qtd;
+        String nomeItem,unidadeItem;
+        float valorItem,valor_total;
+        Scanner sc = new Scanner(System.in);
+        ItensVenda iv = new ItensVenda();
+        System.out.println("Informa quantidade de itens");  
+        qtd = iv.setQuantidade(sc.nextInt());
+
+        Item item = new Item("","",1,qtd);
+        valor_total = qtd * item.getValor();
+       return valor_total;
     }
     public String getEnderecoEntrega(){
-        System.out.println(cliente.getEndereco());
+        return cliente.getEndereco();
     }
     public String getQtdItens(){
-        return "teste";
+        ItensVenda iv = new ItensVenda();
+        return iv.getQtdItens() ;
     }
     public void pagar(){
         return ;

@@ -15,7 +15,7 @@ public class ClientController {
     }
 
     // Cadastro de Cliente (int id, String nome, String cpf,float salario)
-    public static void cadastrarCliente(String nome, String cpf, String endereco) {
+    public static Cliente cadastrarCliente(String nome, String cpf, String endereco) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
        
@@ -28,6 +28,7 @@ public class ClientController {
         entityManager.persist(c);
        
         entityManager.getTransaction().commit();
+        return c;
     }
 
     // Listar um Cliente (int id)

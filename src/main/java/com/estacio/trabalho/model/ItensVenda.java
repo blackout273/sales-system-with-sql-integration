@@ -1,14 +1,17 @@
-
 package com.estacio.trabalho.model;
 
-public class ItensVenda extends Venda{
+import java.util.Scanner;
+
+public class ItensVenda extends Venda {
+
     private Item item;
     private int quantidade;
+
 
     public Item getItem() {
         return item;
     }
-S
+
     public void setItem(Item item) {
         this.item = item;
     }
@@ -17,7 +20,8 @@ S
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public int setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }   
+        return this.quantidade;
+    }
 }

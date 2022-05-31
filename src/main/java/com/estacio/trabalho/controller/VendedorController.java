@@ -15,7 +15,7 @@ public class VendedorController {
     }
 
     // Cadastro de Vendedor (int id, String nome, String cpf,float salario)
-    public static void cadastrarVendedor(String nome, String cpf, float salario) {
+    public static Vendedor cadastrarVendedor(String nome, String cpf, float salario) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
        
@@ -28,6 +28,7 @@ public class VendedorController {
         entityManager.persist(v);
        
         entityManager.getTransaction().commit();
+        return v;
     }
 
     // Listar um Vendedor (int id)

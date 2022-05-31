@@ -2,6 +2,7 @@ package com.estacio.trabalho;
 
 import com.estacio.trabalho.controller.ClientController;
 import com.estacio.trabalho.controller.ItemController;
+import com.estacio.trabalho.controller.VendaController;
 import java.util.Scanner;
 
 import javax.persistence.EntityManagerFactory;
@@ -12,6 +13,7 @@ import com.estacio.trabalho.model.Cliente;
 import com.estacio.trabalho.controller.VendedorController;
 import com.estacio.trabalho.model.ItensVenda;
 import com.estacio.trabalho.model.Venda;
+import com.estacio.trabalho.model.Vendedor;
 
 public class Aplication {
 
@@ -185,23 +187,53 @@ public class Aplication {
     }
 
     public void venda() {
-        String nome_vendedor_venda, forma_pagamento, nome_item_venda;
-        int id_cliente_venda,quantidade_itens;
-        Scanner opt = new Scanner(System.in);
-        System.out.println("Vamos realizar uma venda");
-        System.out.println("Primeiro, o ID do cliente");
-        id_cliente_venda = opt.nextInt();
-        
-        var clientID = ClientController.listarUm(id_cliente_venda);
-        System.out.println("De acordo com o ID, o cliente é: " + clientID.nome);
-        System.out.println("O ID do item");
-        nome_item_venda = opt.next();
-        System.out.println("Quantidade de itens");
-        quantidade_itens=opt.nextInt();
-        //ItensVenda intensVenda = new ItensVenda(quantidade_itens);;
-        System.out.println("Forma de pagamento");
-        forma_pagamento = opt.next();
-        Venda venda = new Venda(forma_pagamento);
+      while (isRunning) {
+      String dataDaVenda,formaPagamento,nome_cliente,cpf_cliente,endereco_cliente,nome_vendedor,cpf_vendedor;
+      Cliente objeto_cliente;
+      Vendedor objeto_vendedor;
+      float salario_vendedor;
+          Scanner opt = new Scanner(System.in);
+          System.out.println("Insira a data da venda\n");
+          dataDaVenda = opt.next();
+          System.out.println("Insira a forma de pagamento\n");
+          formaPagamento = opt.next();
+          
+          System.out.println("Insira o nome do cliente\n");
+          nome_cliente = opt.next();
+          System.out.println("Insira o CPF do cliente\n");
+          cpf_cliente = opt.next();
+          System.out.println("Insira o endereco do cliente\n");
+          endereco_cliente = opt.next();
+          objeto_cliente = ClientController.cadastrarCliente(nome_cliente, cpf_cliente, endereco_cliente);
+          
+          Scanner vendedorScanner = new Scanner(System.in);
+          System.out.println("Insira o nome do vendedor\n");
+          nome_vendedor = vendedorScanner.next();
+          System.out.println("Insira o CPF do vendedor\n");
+          cpf_vendedor = vendedorScanner.next();
+          System.out.println("Insira o salario do vendedor\n");
+          salario_vendedor = vendedorScanner.nextFloat();
+          objeto_vendedor = VendedorController.cadastrarVendedor(nome_vendedor, cpf_vendedor, salario_vendedor); 
+          
+          
+          
+          VendaController.cadastrarVenda(dataDaVenda, formaPagamento,objeto_vendedor, objeto_cliente);
+          /*
+          System.out.println("Venda cadastrada com sucesso");
+          System.out.println("Data da venda: ");
+          System.out.println(vd.getDataDaVenda());
+          System.out.println("Cliente: ");
+          System.out.println(vd.getCliente().nome);
+          System.out.println("Vendedor");
+          System.out.println(vd.getVendedor().nome );
+          System.out.println("Forma de pagamento");
+          System.out.println(vd.getFormaPagamento());
+          System.out.println("Endereco do cliente");
+          System.out.println(vd.getEnderecoEntrega());
+          System.out.println("Valor total: "+vd.getValorTotal());
+            */
+          
+      }
     }
 
     public static void main(String[] args) {
