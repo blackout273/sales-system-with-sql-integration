@@ -1,6 +1,7 @@
 
 package com.estacio.trabalho.model;
 
+import com.estacio.trabalho.controller.ItemController;
 import com.estacio.trabalho.interfaces.MetodoPagamento;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,8 +23,8 @@ public class Venda implements MetodoPagamento{
     ArrayList<ItensVenda> listaItens = new ArrayList<>(); 
     
      public Venda(Integer id, String dataDaVenda, String formaPagamento, Vendedor vendedor, Cliente cliente) {
-         System.out.println("Opa chegou na classe Venda");
-         this.id = id;
+        
+        this.id = id;
         this.dataDaVenda = dataDaVenda;
         this.formaPagamento = formaPagamento;
         this.vendedor = vendedor;
@@ -34,7 +35,6 @@ public class Venda implements MetodoPagamento{
     public Venda(){
         
     }
-    
     
    
     @Override
@@ -90,16 +90,18 @@ public class Venda implements MetodoPagamento{
         this.dataDaVenda = dataDaVenda;
     }
     public float getValorTotal(){
-        int qtd;
+        Item objeto_item;
+        int qtd,id_item;
         String nomeItem,unidadeItem;
         float valorItem,valor_total;
         Scanner sc = new Scanner(System.in);
         ItensVenda iv = new ItensVenda();
-        System.out.println("Informa quantidade de itens");  
+        System.out.println("Informa quantidade de itens");
         qtd = iv.setQuantidade(sc.nextInt());
-
-        Item item = new Item("","",1,qtd);
-        valor_total = qtd * item.getValor();
+        System.out.println("Insira o ID do item");
+        id_item = sc.nextInt();
+        objeto_item = ItemController.listarUm(id_item);
+        valor_total = qtd * objeto_item.getValor();
        return valor_total;
     }
     public String getEnderecoEntrega(){

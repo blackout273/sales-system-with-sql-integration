@@ -1,5 +1,6 @@
 package com.estacio.trabalho.model;
 
+import com.estacio.trabalho.controller.ItemController;
 import java.util.Scanner;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,42 +16,45 @@ public class Item extends ItensVenda {
     private String nome;
     private String unidade;
     private float valor;
+    
+    
     public Item(){
     }
-    public Item(String nome, String unidade, float valor, int quantidade) {
+    public Item(String nome, String unidade, float valor) {
         this.setNome(nome);
         this.setUnidade(unidade);
         this.setValor(valor);
-        this.setQuantidade(quantidade);
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
-
+    
     public void setNome(String nome) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Insira o Nome");
+        System.out.println("Insira o Nome do item");
         this.nome = sc.next();
     }
 
     public String getUnidade() {
-        return unidade;
+        return this.unidade;
     }
 
     public void setUnidade(String unidade) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Informe a unidade");
+        System.out.println("Informe a unidade de itens");
         this.unidade = sc.next();
     }
 
     public float getValor() {
-        return valor;
+        return this.valor;
     }
 
     public void setValor(float valor) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Insira o valor");
+        System.out.println("Insira o valor do item");
         this.valor = sc.nextFloat();
+        
+        
     }
 }

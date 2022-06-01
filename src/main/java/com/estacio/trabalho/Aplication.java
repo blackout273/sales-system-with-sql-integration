@@ -14,6 +14,7 @@ import com.estacio.trabalho.controller.VendedorController;
 import com.estacio.trabalho.model.ItensVenda;
 import com.estacio.trabalho.model.Venda;
 import com.estacio.trabalho.model.Vendedor;
+import javax.persistence.PersistenceException;
 
 public class Aplication {
 
@@ -187,53 +188,53 @@ public class Aplication {
     }
 
     public void venda() {
-      while (isRunning) {
-      String dataDaVenda,formaPagamento,nome_cliente,cpf_cliente,endereco_cliente,nome_vendedor,cpf_vendedor;
-      Cliente objeto_cliente;
-      Vendedor objeto_vendedor;
-      float salario_vendedor;
-          Scanner opt = new Scanner(System.in);
-          System.out.println("Insira a data da venda\n");
-          dataDaVenda = opt.next();
-          System.out.println("Insira a forma de pagamento\n");
-          formaPagamento = opt.next();
-          
-          System.out.println("Insira o nome do cliente\n");
-          nome_cliente = opt.next();
-          System.out.println("Insira o CPF do cliente\n");
-          cpf_cliente = opt.next();
-          System.out.println("Insira o endereco do cliente\n");
-          endereco_cliente = opt.next();
-          objeto_cliente = ClientController.cadastrarCliente(nome_cliente, cpf_cliente, endereco_cliente);
-          
-          Scanner vendedorScanner = new Scanner(System.in);
-          System.out.println("Insira o nome do vendedor\n");
-          nome_vendedor = vendedorScanner.next();
-          System.out.println("Insira o CPF do vendedor\n");
-          cpf_vendedor = vendedorScanner.next();
-          System.out.println("Insira o salario do vendedor\n");
-          salario_vendedor = vendedorScanner.nextFloat();
-          objeto_vendedor = VendedorController.cadastrarVendedor(nome_vendedor, cpf_vendedor, salario_vendedor); 
-          
-          
-          
-          VendaController.cadastrarVenda(dataDaVenda, formaPagamento,objeto_vendedor, objeto_cliente);
-          /*
-          System.out.println("Venda cadastrada com sucesso");
-          System.out.println("Data da venda: ");
-          System.out.println(vd.getDataDaVenda());
-          System.out.println("Cliente: ");
-          System.out.println(vd.getCliente().nome);
-          System.out.println("Vendedor");
-          System.out.println(vd.getVendedor().nome );
-          System.out.println("Forma de pagamento");
-          System.out.println(vd.getFormaPagamento());
-          System.out.println("Endereco do cliente");
-          System.out.println(vd.getEnderecoEntrega());
-          System.out.println("Valor total: "+vd.getValorTotal());
-            */
-          
-      }
+        while (isRunning) {
+            try {
+                String data_da_venda, forma_de_pagamento;
+                int id_cliente,id_vendedor;
+                Cliente objeto_cliente;
+                Vendedor objeto_vendedor;
+                
+                Scanner opt = new Scanner(System.in);
+                System.out.println("Insira o ID do cliente");
+                id_cliente = opt.nextInt();
+                objeto_cliente = ClientController.listarUm(id_cliente);
+                System.out.println("Selecionou cliente : "+objeto_cliente.nome);
+                
+                System.out.println("Insira o ID do vendedor");
+                id_vendedor = opt.nextInt();
+                objeto_vendedor = VendedorController.listarUm(id_vendedor);
+                System.out.println("Selecionou vendedor : "+objeto_vendedor.nome);
+                
+                
+                System.out.println("Informe a data da venda");
+                data_da_venda = opt.next();
+                
+                System.out.println("Informe o metodo de pagamento");
+                forma_de_pagamento = opt.next();
+
+                Venda vd = new Venda(null,data_da_venda, forma_de_pagamento, objeto_vendedor, objeto_cliente);
+                
+                System.out.println("Valor total: "+vd.getValorTotal());
+                System.out.println("Venda cadastrada com sucesso");
+                System.out.println("Data da venda: ");
+                System.out.println(vd.getDataDaVenda());
+                System.out.println("Cliente: ");
+                System.out.println(vd.getCliente().nome);
+                System.out.println("Vendedor");
+                System.out.println(vd.getVendedor().nome );
+                System.out.println("Forma de pagamento");
+                System.out.println(vd.getFormaPagamento());
+                System.out.println("Endereco do cliente");
+                System.out.println(vd.getEnderecoEntrega());
+                
+                 
+
+            } catch (PersistenceException ex) {
+                System.out.println("Erro: " + ex);
+            }
+
+        }
     }
 
     public static void main(String[] args) {

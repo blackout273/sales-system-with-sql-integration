@@ -15,7 +15,7 @@ public class ItemController {
     }
 
     // Cadastro de Item (int id, String nome, String unidade,float valor)
-    public static void cadastrarItem(String nome, String unidade, float valor) {
+    public static Item cadastrarItem(String nome, String unidade, float valor) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
        
@@ -26,8 +26,9 @@ public class ItemController {
         i.setUnidade(unidade);
         i.setValor(valor);
         entityManager.persist(i);
-       
+        
         entityManager.getTransaction().commit();
+        return i;
     }
 
     // Listar um Item (int id)
