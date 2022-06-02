@@ -26,9 +26,9 @@ public class ItemController {
         i.setUnidade(unidade);
         i.setValor(valor);
         entityManager.persist(i);
-        
+       
         entityManager.getTransaction().commit();
-        return i;
+       return i;
     }
 
     // Listar um Item (int id)

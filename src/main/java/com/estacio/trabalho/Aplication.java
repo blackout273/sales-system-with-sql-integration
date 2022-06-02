@@ -213,7 +213,7 @@ public class Aplication {
                 System.out.println("Informe o metodo de pagamento");
                 forma_de_pagamento = opt.next();
 
-                Venda vd = new Venda(null,data_da_venda, forma_de_pagamento, objeto_vendedor, objeto_cliente);
+                Venda vd = new Venda(data_da_venda, forma_de_pagamento, objeto_vendedor, objeto_cliente);
                 
                 System.out.println("Valor total: "+vd.getValorTotal());
                 System.out.println("Venda cadastrada com sucesso");

@@ -18,14 +18,16 @@ public class Item extends ItensVenda {
     private float valor;
     
     
+    
+    public Item(String nome, String unidade, float valor, Integer id) {
+        this.id= id; 
+        this.nome = nome;
+        this.unidade = unidade;
+        this.valor = valor;
+    }
+    
     public Item(){
     }
-    public Item(String nome, String unidade, float valor) {
-        this.setNome(nome);
-        this.setUnidade(unidade);
-        this.setValor(valor);
-    }
-
     public String getNome() {
         return this.nome;
     }

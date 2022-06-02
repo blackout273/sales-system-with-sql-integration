@@ -10,21 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+
 public class Venda implements MetodoPagamento{
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    public Integer id;
+   
+
     private String dataDaVenda;
     private String formaPagamento;
     private Vendedor vendedor;
     private Cliente cliente;
     ArrayList<ItensVenda> listaItens = new ArrayList<>(); 
     
-     public Venda(Integer id, String dataDaVenda, String formaPagamento, Vendedor vendedor, Cliente cliente) {
-        
-        this.id = id;
+     public Venda(String dataDaVenda, String formaPagamento, Vendedor vendedor, Cliente cliente) {
+  
         this.dataDaVenda = dataDaVenda;
         this.formaPagamento = formaPagamento;
         this.vendedor = vendedor;
