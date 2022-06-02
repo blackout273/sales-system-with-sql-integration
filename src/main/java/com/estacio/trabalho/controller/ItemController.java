@@ -3,6 +3,7 @@ package com.estacio.trabalho.controller;
 
 
 import com.estacio.trabalho.model.Item;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,7 +27,6 @@ public class ItemController {
         i.setUnidade(unidade);
         i.setValor(valor);
         entityManager.persist(i);
-       
         entityManager.getTransaction().commit();
        return i;
     }
@@ -45,13 +45,17 @@ public class ItemController {
 
     // Listar todos os Itens
     @SuppressWarnings("unchecked")
-    public static List<ItemController> listar() {
+    public static List<List> listar() {
+        ArrayList<List> listaNomes = new ArrayList<>();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
        
         entityManager.getTransaction().begin();
-
-        return entityManager.createQuery("SELECT id FROM " + Item.class.getSimpleName()).getResultList();
+        
+        listaNomes.add(entityManager.createQuery("SELECT nome FROM " + Item.class.getSimpleName()).getResultList());
+        listaNomes.add(entityManager.createQuery("SELECT id FROM " + Item.class.getSimpleName()).getResultList());
+        return listaNomes;
+        
     }
 
     // Alterar um Item (String nome, String unidade, float valor, int id)

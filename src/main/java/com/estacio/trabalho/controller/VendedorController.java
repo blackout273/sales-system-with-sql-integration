@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 import com.estacio.trabalho.model.Vendedor;
+import java.util.ArrayList;
 
 public class VendedorController {
     
@@ -45,13 +46,17 @@ public class VendedorController {
 
     // Listar todos os Vendedores
     @SuppressWarnings("unchecked")
-    public static List<VendedorController> listar() {
+    public static List<List> listar() {
+        ArrayList<List> listaNomes = new ArrayList<>();
+        int id;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
        
         entityManager.getTransaction().begin();
 
-        return entityManager.createQuery("SELECT  id FROM " + Vendedor.class.getSimpleName() +" WHERE DTYPE = 'Vendedor' " ).getResultList();
+        listaNomes.add(entityManager.createQuery("SELECT nome FROM " + Vendedor.class.getSimpleName() +" WHERE DTYPE = 'Vendedor' " ).getResultList());
+        listaNomes.add(entityManager.createQuery("SELECT id FROM " + Vendedor.class.getSimpleName() +" WHERE DTYPE = 'Vendedor' " ).getResultList());
+        return listaNomes;
     }
 
     // Alterar um Vendedor (String nome, float salario, int id)

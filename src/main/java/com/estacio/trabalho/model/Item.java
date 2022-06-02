@@ -13,13 +13,11 @@ public class Item extends ItensVenda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nome;
-    private String unidade;
+    private String nome, unidade;
     private float valor;
     
-    
-    
-    public Item(String nome, String unidade, float valor, Integer id) {
+  
+    public Item(String nome, String unidade, float valor, int id) {
         this.id= id; 
         this.nome = nome;
         this.unidade = unidade;
@@ -33,9 +31,7 @@ public class Item extends ItensVenda {
     }
     
     public void setNome(String nome) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Insira o Nome do item");
-        this.nome = sc.next();
+        this.nome = nome;
     }
 
     public String getUnidade() {
@@ -43,9 +39,7 @@ public class Item extends ItensVenda {
     }
 
     public void setUnidade(String unidade) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Informe a unidade de itens");
-        this.unidade = sc.next();
+        this.unidade = unidade;
     }
 
     public float getValor() {
@@ -53,9 +47,7 @@ public class Item extends ItensVenda {
     }
 
     public void setValor(float valor) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Insira o valor do item");
-        this.valor = sc.nextFloat();
+        this.valor = valor;
         
         
     }

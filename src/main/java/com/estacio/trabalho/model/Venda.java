@@ -5,10 +5,10 @@ import com.estacio.trabalho.controller.ItemController;
 import com.estacio.trabalho.interfaces.MetodoPagamento;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
 
 
 public class Venda implements MetodoPagamento{
@@ -19,14 +19,16 @@ public class Venda implements MetodoPagamento{
     private String formaPagamento;
     private Vendedor vendedor;
     private Cliente cliente;
+    private float valor_pago;
     ArrayList<ItensVenda> listaItens = new ArrayList<>(); 
     
-     public Venda(String dataDaVenda, String formaPagamento, Vendedor vendedor, Cliente cliente) {
+     public Venda(String dataDaVenda, String formaPagamento, Vendedor vendedor, Cliente cliente,float valor_pago) {
   
         this.dataDaVenda = dataDaVenda;
         this.formaPagamento = formaPagamento;
         this.vendedor = vendedor;
         this.cliente = cliente;
+        this.valor_pago=valor_pago;
     }
     
     
@@ -51,13 +53,17 @@ public class Venda implements MetodoPagamento{
     }
     
     public String getFormaPagamento() {
+        
         if(this.formaPagamento.equals("cartao")){
         return this.pagarCartao();
+        
         }if(this.formaPagamento.equals("pix")){
         return this.pagarPix();
+        
         }if(this.formaPagamento.equals("dinheiro")){
         return this.pagarDinheiro();
         }
+        
         return "opção invalida";
     }
 
@@ -80,6 +86,7 @@ public class Venda implements MetodoPagamento{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
     public String getDataDaVenda() {
         return dataDaVenda;
     }
@@ -88,18 +95,28 @@ public class Venda implements MetodoPagamento{
         this.dataDaVenda = dataDaVenda;
     }
     public float getValorTotal(){
+        
         Item objeto_item;
+        
         int qtd,id_item;
+        
         String nomeItem,unidadeItem;
+        
         float valorItem,valor_total;
+        
         Scanner sc = new Scanner(System.in);
         ItensVenda iv = new ItensVenda();
+        
         System.out.println("Informa quantidade de itens");
         qtd = iv.setQuantidade(sc.nextInt());
+        
+        System.out.println("ID dos Itens: ");
+        System.out.println(ItemController.listar());
         System.out.println("Insira o ID do item");
         id_item = sc.nextInt();
         objeto_item = ItemController.listarUm(id_item);
         valor_total = qtd * objeto_item.getValor();
+        
        return valor_total;
     }
     public String getEnderecoEntrega(){
@@ -109,7 +126,15 @@ public class Venda implements MetodoPagamento{
         ItensVenda iv = new ItensVenda();
         return iv.getQtdItens() ;
     }
-    public void pagar(){
-        return ;
+    public String pagar(){
+        if (this.getValorTotal()== this.valor_pago){
+        return "Valor Pago com sucesso";
+        
+        }else if ((this.getValorTotal()<this.valor_pago) && (this.formaPagamento.equals("dinheiro")) ){
+        float resto;
+        resto = this.valor_pago - this.getValorTotal();
+        return "Voltou "+resto+" de troco";
+        }
+        return "Valor pago inferior ao valor do produto";
     }
 }

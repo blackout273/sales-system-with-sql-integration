@@ -2,6 +2,7 @@
 package com.estacio.trabalho.controller;
 
 import com.estacio.trabalho.model.Cliente;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -45,13 +46,18 @@ public class ClientController {
 
     // Listar todos os Clientes
     @SuppressWarnings("unchecked")
-    public static List<ClientController> listar() {
+    public static List<List> listar() {
+        ArrayList<List> listaNomes = new ArrayList<>();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
        
         entityManager.getTransaction().begin();
 
-        return entityManager.createQuery("SELECT id FROM " + Cliente.class.getSimpleName() +" WHERE DTYPE = 'Cliente' " ).getResultList();
+        
+        listaNomes.add(entityManager.createQuery("SELECT nome FROM " + Cliente.class.getSimpleName() +" WHERE DTYPE = 'Cliente' " ).getResultList());
+        listaNomes.add(entityManager.createQuery("SELECT id FROM " + Cliente.class.getSimpleName() +" WHERE DTYPE = 'Cliente' " ).getResultList());
+        return listaNomes;
+        
     }
 
     // Alterar um Cliente (String nome, String endereco, int id)
