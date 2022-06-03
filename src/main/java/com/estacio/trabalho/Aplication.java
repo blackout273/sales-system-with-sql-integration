@@ -17,13 +17,13 @@ public class Aplication {
 
     public void vendedor() {
         while (isRunning) {
-            try {
+            
                 Scanner opt = new Scanner(System.in);
                 String nome_vendedor, cpf_vendedor;
                 float salario_vendedor, valor;
                 int id;
                 System.out.print("Menu: 1 para cadastrar um Vendedor | 2 para listar os Vendedores | 3 para editar um Vendedor | 4 para excluir um Vendedor | 5 para listar um Vendedor ou 0 para sair \n");
-                valor = opt.nextInt();
+                valor = Integer.parseInt(opt.nextLine());
                 if (valor == 1) {
 
                     System.out.println("Insira o nome do Vendedor \n");
@@ -73,9 +73,7 @@ public class Aplication {
                 if (valor == 0) {
                     isRunning = false;
                 }
-            } catch (Exception ex) {
-                System.out.println(ex);
-            }
+            
 
         }
     }
@@ -85,18 +83,18 @@ public class Aplication {
             try {
                 Scanner opt = new Scanner(System.in);
                 String nome_cliente, cpf_cliente, endereco;
-                int id;
-                float valor;
+                int id,valor;
+                
                 System.out.print("Menu: 1 para cadastrar um Cliente | 2 para listar os Cliente | 3 para editar um Cliente | 4 para excluir um Cliente | 5 para listar um Cliente | ou 0 para sair \n");
-                valor = opt.nextInt();
+                valor = Integer.parseInt(opt.nextLine());
                 if (valor == 1) {
 
-                    System.out.println("Insira o nome do Cliente \n");
-                    nome_cliente = opt.next();
-                    System.out.println("CPF do Cliente \n");
-                    cpf_cliente = opt.next();
-                    System.out.println("Endereco do Cliente \n");
-                    endereco = opt.next();
+                    System.out.println("Insira o nome do Cliente: ");
+                    nome_cliente = opt.nextLine();
+                    System.out.println("CPF do Cliente: ");
+                    cpf_cliente = opt.nextLine();
+                    System.out.println("Endereco do Cliente: ");
+                    endereco = opt.nextLine();
 
                     // Salvar Vendedor no banco
                     ClientController.cadastrarCliente(nome_cliente, cpf_cliente, endereco);
@@ -155,7 +153,7 @@ public class Aplication {
             int id;
             float valor_item,valor;
             System.out.print("Menu: 1 para cadastrar um Item | 2 para listar os Itens | 3 para editar um Item | 4 para excluir um Item | 5 para listar um item | ou 0 para sair \n");
-            valor = opt.nextInt();
+            valor = Integer.parseInt(opt.nextLine());
             if (valor == 1) {
 
                 System.out.println("Insira o nome do Item \n");
@@ -247,8 +245,8 @@ public class Aplication {
 
                 Venda vd = new Venda(data_da_venda, forma_de_pagamento, objeto_vendedor, objeto_cliente,valor_pago);
                 
-                System.out.println("Valor total: "+vd.getValorTotal());
-                System.out.println("Situação: "+vd.pagar());
+                //System.out.println("Valor total: "+vd.getValorTotal());
+                System.out.println("Situação: "+vd.pagar(vd.getValorTotal())); // aqui
                 System.out.println("Data da venda: ");
                 System.out.println(vd.getDataDaVenda());
                 System.out.println("Cliente: ");
@@ -274,7 +272,7 @@ public class Aplication {
 
         while (mainInstance.isRunning) {
             System.out.print("Menu: 1 para Vendedor 2 para cliente 3 para Item 4 para venda ou 0 para sair \n");
-            valor = opt.nextInt();
+            valor = Integer.parseInt(opt.nextLine());
             switch (valor) {
                 case 1 ->
                     mainInstance.vendedor();
