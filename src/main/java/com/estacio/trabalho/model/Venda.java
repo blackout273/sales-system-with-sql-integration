@@ -15,7 +15,6 @@ public class Venda implements MetodoPagamento {
     private String formaPagamento;
     private Vendedor vendedor;
     private Cliente cliente;
-
     private float valor_pago;
     ArrayList<ItensVenda> listaItens = new ArrayList<>();
 
@@ -145,7 +144,7 @@ public class Venda implements MetodoPagamento {
             resto = getValor_pago() - valorTotal;
             return "Voltou " + resto + " de troco";
         } else {
-            return "Valor pago inferior ao valor do produto";
+            return "Venda não realizada: Valor pago inferior ao valor do produto";
         }
     }
 }

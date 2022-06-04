@@ -1,4 +1,3 @@
-
 package com.estacio.trabalho.model;
 
 import javax.persistence.Entity;
@@ -8,16 +7,15 @@ import javax.persistence.Id;
 
 @Entity
 public class Vendedor extends Pessoa {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
 
-    
-    public Vendedor(Integer id, String nome, String cpf,float salario) {
-        this.id= id; 
-        this.nome = nome; 
-        this.cpf= cpf;
+    public Vendedor(Integer id, String nome, String cpf, float salario) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
         this.salario = salario;
     }
 
@@ -26,7 +24,6 @@ public class Vendedor extends Pessoa {
 
     private float salario;
 
-    
     public Integer getId() {
         return id;
     }
@@ -34,6 +31,7 @@ public class Vendedor extends Pessoa {
     public void setId(Integer id) {
         this.id = id;
     }
+
     public float getSalario() {
         return salario;
     }

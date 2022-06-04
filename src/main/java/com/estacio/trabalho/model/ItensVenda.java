@@ -7,7 +7,6 @@ public class ItensVenda extends Venda {
     private Item item;
     private int quantidade;
 
-
     public Item getItem() {
         return item;
     }

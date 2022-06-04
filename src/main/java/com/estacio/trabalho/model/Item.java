@@ -15,21 +15,21 @@ public class Item extends ItensVenda {
     private int id;
     private String nome, unidade;
     private float valor;
-    
-  
+
     public Item(String nome, String unidade, float valor, int id) {
-        this.id= id; 
+        this.id = id;
         this.nome = nome;
         this.unidade = unidade;
         this.valor = valor;
     }
-    
-    public Item(){
+
+    public Item() {
     }
+
     public String getNome() {
         return this.nome;
     }
-    
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -48,7 +48,6 @@ public class Item extends ItensVenda {
 
     public void setValor(float valor) {
         this.valor = valor;
-        
-        
+
     }
 }

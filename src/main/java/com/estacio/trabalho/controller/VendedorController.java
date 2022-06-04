@@ -1,4 +1,3 @@
-
 package com.estacio.trabalho.controller;
 
 import javax.persistence.EntityManager;
@@ -9,9 +8,9 @@ import com.estacio.trabalho.model.Vendedor;
 import java.util.ArrayList;
 
 public class VendedorController {
-    
-    public VendedorController(){
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("trabalho-java");
+
+    public VendedorController() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager em = emf.createEntityManager();
     }
 
@@ -19,15 +18,15 @@ public class VendedorController {
     public static Vendedor cadastrarVendedor(String nome, String cpf, float salario) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
-       
+
         entityManager.getTransaction().begin();
-       
+
         Vendedor v = new Vendedor();
         v.setNome(nome);
         v.setCpf(cpf);
         v.setSalario(salario);
         entityManager.persist(v);
-       
+
         entityManager.getTransaction().commit();
         return v;
     }
@@ -36,11 +35,11 @@ public class VendedorController {
     public static Vendedor listarUm(int id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
-       
+
         entityManager.getTransaction().begin();
         Vendedor v = entityManager.find(Vendedor.class, id);
         entityManager.getTransaction().commit();
-        
+
         return v;
     }
 
@@ -51,11 +50,11 @@ public class VendedorController {
         int id;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
-       
+
         entityManager.getTransaction().begin();
 
-        listaNomes.add(entityManager.createQuery("SELECT nome FROM " + Vendedor.class.getSimpleName() +" WHERE DTYPE = 'Vendedor' " ).getResultList());
-        listaNomes.add(entityManager.createQuery("SELECT id FROM " + Vendedor.class.getSimpleName() +" WHERE DTYPE = 'Vendedor' " ).getResultList());
+        listaNomes.add(entityManager.createQuery("SELECT nome FROM " + Vendedor.class.getSimpleName() + " WHERE DTYPE = 'Vendedor' ").getResultList());
+        listaNomes.add(entityManager.createQuery("SELECT id FROM " + Vendedor.class.getSimpleName() + " WHERE DTYPE = 'Vendedor' ").getResultList());
         return listaNomes;
     }
 
@@ -63,13 +62,13 @@ public class VendedorController {
     public static void update(String nome, String cpf, float salario, int id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
-       
+
         entityManager.getTransaction().begin();
         Vendedor v = entityManager.find(Vendedor.class, id);
         v.setNome(nome);
         v.setSalario(salario);
         v.setCpf(cpf);
-       
+
         entityManager.getTransaction().commit();
     }
 
@@ -77,12 +76,12 @@ public class VendedorController {
     public static void delete(int id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalho-java");
         EntityManager entityManager = emf.createEntityManager();
-       
+
         entityManager.getTransaction().begin();
         Vendedor v = entityManager.find(Vendedor.class, id);
         entityManager.remove(v);
-       
+
         entityManager.getTransaction().commit();
     }
-    
+
 }

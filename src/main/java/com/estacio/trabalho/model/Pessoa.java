@@ -1,4 +1,3 @@
-
 package com.estacio.trabalho.model;
 
 import java.io.Serializable;
@@ -9,18 +8,19 @@ import javax.persistence.GeneratedValue;
 
 @Entity
 public class Pessoa implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
     protected String nome;
     protected String cpf;
-    
-    
+
     public Pessoa() {
-        
+
     }
+
     public Pessoa(Integer id, String nome, String cpf) {
         this.id = id;
         this.nome = nome;
@@ -37,7 +37,7 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", cpf=" + cpf +'}';
+        return "Pessoa{" + "nome=" + nome + ", cpf=" + cpf + '}';
     }
 
     public String getNome() {
@@ -56,6 +56,4 @@ public class Pessoa implements Serializable {
         this.cpf = cpf;
     }
 
-    
-    
 }
